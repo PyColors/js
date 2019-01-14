@@ -9,19 +9,20 @@ const func = () => console.log('coco')
 setTimeout(func, 3000)
 
 
+const tab = [1,2,3,4]
 
-const promise = () =>
+const promise = (index) =>
     new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('coco')
-            reject(40)
+            resolve(index * 4)
         }, 2000)
     })
 
-promise()
-    .then(elem => {
-        console.log('toto', elem)
-    })
-    .catch(err => {
-        throw new Error(err)
+const promises = Promise.all(tab.map(el =>
+    promise(el)
+))
+
+promises
+    .then(elements => {
+        console.log(elements)
     })
